@@ -7,6 +7,7 @@ export class PluginManager {
   private pluginLoader: PluginLoader;
 
   private commands: Map<string, Plugin> = new Map();
+  private aliases: Map<string, string> = new Map();
 
   constructor() {
     this.pluginLoader = new PluginLoader();
@@ -17,7 +18,7 @@ export class PluginManager {
   }
 
   public registerCommands() {
-    log("Registering commands...");
+    log("Registering commands.");
     this.plugins.forEach((plugin) => {
       const pluginCommands = plugin.registerCommands();
 
@@ -32,6 +33,18 @@ export class PluginManager {
         }
         this.commands.set(command.name, plugin);
         logInfo(`Command "${command.name}" registered!`);
+
+        log(`Registering aliases for command "${command.name}".`);
+
+        command.aliases.forEach((alias) => {
+          if (this.aliases.has(alias)) {
+            logError(`Error while registering command "${command.name}":`);
+            logInfo(`Alias ${alias} already exists`);
+            return;
+          }
+          this.aliases.set(alias, command.name);
+          logInfo(`Alias "${alias}" registered!`);
+        });
       });
     });
   }
