@@ -34,5 +34,7 @@ export class PluginLoader {
         logError(error);
       }
     }
+
+    return this.plugins;
   }
 }

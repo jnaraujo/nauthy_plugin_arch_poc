@@ -9,6 +9,17 @@ export abstract class Plugin {
 
   public abstract onLoad(): void;
   public abstract onReload(): void;
+
+  public abstract registerCommands(): Command[];
+}
+
+export interface Command {
+  name: string;
+  description: string;
+  permissions: string[];
+  aliases: string[];
+  usage: string;
+  execute(message: Message, args: string[]): void;
 }
 
 export interface Message {
@@ -16,8 +27,4 @@ export interface Message {
 
   content: string;
   channelId: string;
-}
-
-export interface Interactions {
-  onCommand(command: string, args: string[], message: Message): void;
 }

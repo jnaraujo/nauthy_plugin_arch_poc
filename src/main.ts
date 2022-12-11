@@ -1,4 +1,5 @@
-import { PluginLoader } from "./lib/PluginManager/PluginLoader.ts";
+import { PluginManager } from "./lib/PluginManager/index.ts";
 
-const pluginLoader = new PluginLoader();
-await pluginLoader.loadPlugins();
+const pluginManager = new PluginManager();
+await pluginManager.loadPlugins();
+pluginManager.registerCommands();
