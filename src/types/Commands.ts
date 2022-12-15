@@ -24,19 +24,13 @@ export enum Locales {
   JA_JP = "ja-JP",
   KO_KR = "ko-KR",
 }
-
-export interface CommandOptionChoice {
-  name: string;
-  name_localizations?: Record<Locales, string>;
-  value: string | number;
-}
-
-export interface CommandOption {
+export interface CommandResponse {
   name: string;
   name_localizations?: Record<Locales, string>;
   description: string;
   description_localizations?: Record<Locales, string>;
+}
 
-  required?: boolean;
-  choices: CommandOptionChoice[];
+export interface Response {
+  text: string;
 }

@@ -1,3 +1,4 @@
+import { Response } from "../../types/Commands.ts";
 import { Command, Message, Plugin } from "../../types/Plugin.ts";
 
 export default class TestePlugin extends Plugin {
@@ -21,28 +22,11 @@ export default class TestePlugin extends Plugin {
         permissions: ["ADMINISTRATOR"],
         aliases: ["t"],
         usage: "teste",
-        execute: (message: Message, args: string[]) => {
-          console.log("Teste command executed: ", message, args);
-        },
-      },
-      {
-        name: "teste",
-        description: "Teste command",
-        permissions: ["ADMINISTRATOR"],
-        aliases: ["t"],
-        usage: "teste",
-        execute: (message: Message, args: string[]) => {
-          console.log("Teste command executed: ", message, args);
-        },
-      },
-      {
-        name: "teste2",
-        description: "Teste command",
-        permissions: ["ADMINISTRATOR"],
-        aliases: ["t"],
-        usage: "teste",
-        execute: (message: Message, args: string[]) => {
-          console.log("Teste command executed: ", message, args);
+        execute: (message: Message): Response => {
+          const { sender } = message;
+          return {
+            text: `Hello ${sender.name}!`,
+          };
         },
       },
     ];

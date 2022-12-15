@@ -1,3 +1,4 @@
+import { Response } from "./Commands.ts";
 import { User } from "./User.ts";
 
 export abstract class Plugin {
@@ -19,7 +20,7 @@ export interface Command {
   permissions: string[];
   aliases: string[];
   usage: string;
-  execute(message: Message, args: string[]): void;
+  execute(message: Message): Response;
 }
 
 export interface Message {
