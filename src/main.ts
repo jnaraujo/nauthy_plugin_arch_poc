@@ -16,6 +16,8 @@ async function init() {
   }
 
   const client = new Discord(DISCORD_TOKEN);
+
+  client.setCommands(pluginManager.commands);
   await client.connect();
 }
 
