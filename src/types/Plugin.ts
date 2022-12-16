@@ -1,5 +1,5 @@
-import { Response } from "./Commands.ts";
-import { User } from "./User.ts";
+import { Response } from "./Commands";
+import { User } from "./User";
 
 export abstract class Plugin {
   public abstract name: string;

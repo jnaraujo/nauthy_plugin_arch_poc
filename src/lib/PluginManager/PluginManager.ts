@@ -1,6 +1,6 @@
-import { Plugin } from "../../types/Plugin.ts";
-import { PluginLoader } from "./PluginLoader.ts";
-import { log, logError, logInfo } from "./utils/log.ts";
+import { Plugin } from "../../types/Plugin";
+import { PluginLoader } from "./PluginLoader";
+import { log, logError, logInfo } from "./utils/log";
 
 export class PluginManager {
   private plugins: Plugin[] = [];

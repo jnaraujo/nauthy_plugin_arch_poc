@@ -1,6 +1,7 @@
-import { PLUGINS_FOLDER_PATH } from "../../constants/plugin.ts";
-import { Plugin } from "../../types/Plugin.ts";
-import { log, logError, logInfo } from "./utils/log.ts";
+import fs from "node:fs";
+import { PLUGINS_FOLDER_PATH } from "../../constants/plugin";
+import { Plugin } from "../../types/Plugin";
+import { log, logError, logInfo } from "./utils/log";
 
 export class PluginLoader {
   private plugins: Plugin[] = [];
@@ -8,12 +9,14 @@ export class PluginLoader {
   public async loadPlugins() {
     log(PLUGINS_FOLDER_PATH);
     log("Loading plugins...");
-    const pluginFiles = Deno.readDirSync(PLUGINS_FOLDER_PATH);
+    const pluginFiles = fs.readdirSync(PLUGINS_FOLDER_PATH, {
+      withFileTypes: true,
+    });
 
     for (const file of pluginFiles) {
       try {
         const loadedPlugin = (
-          await import(`file:\\${PLUGINS_FOLDER_PATH}/${file.name}/index.ts`)
+          await import(`${PLUGINS_FOLDER_PATH}/${file.name}`)
         ).default;
 
         const pluginInstance: Plugin = new loadedPlugin();
@@ -31,7 +34,7 @@ export class PluginLoader {
         }
       } catch (error) {
         logError(`Failed to load plugin: ${file.name}`);
-        logError(error);
+        logError(error as string);
       }
     }
 

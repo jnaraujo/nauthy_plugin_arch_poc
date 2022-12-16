@@ -1,1 +1,1 @@
-export { PluginManager } from "./PluginManager.ts";
+export { PluginManager } from "./PluginManager";

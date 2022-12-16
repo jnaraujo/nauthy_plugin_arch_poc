@@ -1,5 +1,5 @@
-import { Response } from "../../types/Commands.ts";
-import { Command, Message, Plugin } from "../../types/Plugin.ts";
+import { Response } from "../../types/Commands";
+import { Command, Message, Plugin } from "../../types/Plugin";
 
 export default class TestePlugin extends Plugin {
   public name = "Teste";

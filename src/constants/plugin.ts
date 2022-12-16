@@ -1,4 +1,7 @@
-const RELATIVE_PLUGIN_PATH = "./../plugins";
-export const PLUGINS_FOLDER_PATH = Deno.realPathSync(
-  new URL(RELATIVE_PLUGIN_PATH, import.meta.url)
+import path from "node:path";
+
+const RELATIVE_PLUGIN_PATH = "./plugins";
+export const PLUGINS_FOLDER_PATH = path.resolve(
+  path.dirname(new URL(__dirname).pathname),
+  RELATIVE_PLUGIN_PATH
 );
