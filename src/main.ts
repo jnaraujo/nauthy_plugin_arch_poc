@@ -1,3 +1,6 @@
+import * as dotenv from "dotenv";
+dotenv.config();
+
 import { PluginManager } from "./lib/PluginManager";
 import { Discord } from "./infra/discord/index";
 
